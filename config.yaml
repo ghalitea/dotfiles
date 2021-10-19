@@ -1,0 +1,35 @@
+config:
+  longkey: true
+  keepdot: false
+  dotpath: dotfiles
+dotfiles:
+  f_config_i3_config:
+    src: config/i3/config
+    dst: ~/.config/i3/config
+    chmod: '644'
+  f_config_polybar_config:
+    src: config/polybar/config
+    dst: ~/.config/polybar/config
+    chmod: '644'
+  f_config_kitty_kitty.conf:
+    src: config/kitty/kitty.conf
+    dst: ~/.config/kitty/kitty.conf
+  f_config_picom.conf:
+    src: config/picom.conf
+    dst: ~/.config/picom.conf
+  f_bashrc:
+    src: bashrc
+    dst: ~/.bashrc
+    chmod: '644'
+  f_alias:
+    src: alias
+    dst: ~/.alias
+profiles:
+  laptop:
+    dotfiles:
+    - f_config_i3_config
+    - f_config_polybar_config
+    - f_config_kitty_kitty.conf
+    - f_config_picom.conf
+    - f_bashrc
+    - f_alias
