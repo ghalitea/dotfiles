@@ -38,6 +38,14 @@ profiles:
     - f_bashrc
     - f_alias
     - d_config_i3_scripts
+
   desktop:
     dotfiles:
     - d_config_i3_scripts
+    - f_config_i3_config
+    - f_config_polybar_config
+    - f_config_kitty_kitty.conf
+    - f_config_picom.conf
+    - f_bashrc
+    - f_alias
+
