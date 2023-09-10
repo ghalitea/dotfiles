@@ -28,6 +28,10 @@ dotfiles:
     src: config/i3/scripts
     dst: ~/.config/i3/scripts
     chmod: '775'
+  d_config_rofi:
+    src: config/rofi
+    dst: ~/.config/rofi
+    chmod: '775'
 profiles:
   laptop:
     dotfiles:
@@ -39,6 +43,7 @@ profiles:
     - f_alias
     - d_config_i3_scripts
 
+    - d_config_rofi
   desktop:
     dotfiles:
     - d_config_i3_scripts
@@ -49,3 +54,4 @@ profiles:
     - f_bashrc
     - f_alias
 
+    - d_config_rofi
