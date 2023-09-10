@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:JetBrains Mono NL Regular 11
+font pango:JetBrains Mono NL Regular 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -24,7 +24,7 @@ font pango:JetBrains Mono NL Regular 11
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -44,10 +44,10 @@ floating_modifier $mod
 bindsym $mod+Return exec kitty
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/bin/launcher_colorful
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -113,8 +113,8 @@ set $ws4 "4 "
 set $ws5 "5 "
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9 "
+set $ws8 "8 "
+set $ws9 "9 "
 set $ws10 "10 "
 
 # switch to workspace
@@ -128,6 +128,18 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+
+#assign workspace to monitor
+workspace $ws1 output DP-1
+workspace $ws2 output DP-2
+workspace $ws3 output eDP-1
+workspace $ws4 output DP-1
+workspace $ws5 output eDP-1
+workspace $ws6 output DP-2
+workspace $ws7 output DP-1
+workspace $ws8 output DP-2
+workspace $ws9 output DP-2
+workspace $ws10 output eDP-1
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -143,6 +155,17 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 #assign workspaces
 assign [class="Firefox"] $ws2
+assign [class="Brave-browser"] $ws2
+assign [class="Minecraft Launcher"] $ws4
+assign [class="Minecraft 1.8.9"] $ws4
+assign [class="krita"] $ws5
+assign [class="Xournalpp"] $ws5
+assign [class="TelegramDesktop"] $ws8
+assign [class="Signal"] $ws8
+assign [class="Guilded"] $ws9
+assign [id="0x4a00001"] $ws10
+# type "xprop" in terminal and click on programm to find out what its called
+# you want: WM_CLASS(STRING) the second value
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -184,19 +207,60 @@ bindsym $mod+r mode "resize"
 #	position top
 #}
 
+#calcualtor
+bindsym XF86Calculator exec speedcrunch
+
+#programm shortcuts
+bindsym $mod+Mod1+f exec xfce4-screenshooter
+bindsym $mod+Mod1+c exec xfce4-settings-manager
+bindsym $mod+Mod1+m exec flatpak run com.mojang.Minecraft
+bindsym $mod+Mod1+i exec flatpak run com.jetbrains.IntelliJ-IDEA-Community
+bindsym $mod+Mod1+t exec telegram-desktop
+bindsym $mod+Mod1+s exec flatpak run org.signal.Signal
+bindsym $mod+Mod1+x exec xournalpp
+bindsym $mod+Mod1+v exec thunar
+bindsym $mod+Mod1+k exec krita
+bindsym $mod+Mod1+b exec brave-browser
+bindsym $mod+Mod1+y exec --no-startup-id "~/.config/i3/scripts/startAutoLocker.sh"
+
+#kill Programm
+bindsym $mod+Ctrl+g exec killall guilded
+bindsym $mod+Ctrl+y exec killall xautolock
+
 #lock the screen
-bindsym $mod+x exec i3lock
+bindsym $mod+x exec xautolock -locknow
 
 #set wallpaper
-exec_always feh --bg-scale /home/sfischer/Pictures/andromeda_galaxy_wallpaper_2.jpg
+exec_always feh -Z --bg-scale ~/Pictures/backgrounds/CarinaNebula.png
 
 #autostart
-exec firefox
-exec picom
-exec polybar integrated
+	#programms
+	exec brave-browser
+	exec flatpak run com.spotify.Client
+	exec telegram-desktop
+	exec flatpak run org.signal.Signal
+	
+	#polybar
+	exec_always "killall polybar ; polybar -r integrated & polybar -r integrated_2 & polybar -r integrated_3"
+
+	#other
+	exec picom
+	exec_always --no-startup-id "~/.config/i3/scripts/startAutoLocker.sh"
+
+
+#configure the touchscreen
+exec_always xinput --map-to-output 12 eDP-1
+exec_always xinput --map-to-output 13 eDP-1
+exec_always xinput --map-to-output 16 eDP-1
+exec_always xinput --map-to-output 18 eDP-1
+exec_always xinput --map-to-output 19 eDP-1
+exec_always xinput --map-to-output 20 eDP-1
+exec_always xinput --map-to-output 23 eDP-1
+exec_always xinput --map-to-output 24 eDP-1
 
 #window border
 for_window [class="^.*"] border pixel 4
+
 gaps inner 15
 gaps outer 10
 
@@ -214,5 +278,14 @@ client.urgent		$ur_fcs	$ur_fcs	#ffffff $ur_idc	$ur_fcs
 client.placeholder	#000000	#0c0c0c	#ffffff	#000000	#0c0c0c
 
 client.background	#ffffff
+
+#map keys
+bindcode 127 exec xdotool key ctrl+shift+alt+q+r
+
+#move spotify
+#for_window [class="Spotify"] move to workspace $ws10
+
+
+
 
 

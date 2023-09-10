@@ -18,7 +18,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #202020
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -28,7 +28,7 @@ secondary = #471987
 alert = #b4a921
 
 [bar/integrated]
-monitor = ${env:MONITOR:Virtual1}
+monitor = ${env:MONITOR:DP-1}
 width = 100%
 height = 25
 ;offset-x = 0%
@@ -49,17 +49,17 @@ padding-left = 0
 padding-right = 1
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = JetBrains Mono NL:size=11
+font-0 = JetBrains Mono NL:size=12
 font-1 = FontAwesome:size=8:antialias=false;0
 
 modules-left = i3
 modules-center = date
 modules-right = battery cpu temperature wlan eth pulseaudio
 
-tray-position = right
-tray-padding = 2
+;tray-position = right
+;tray-padding = 2
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
@@ -74,6 +74,82 @@ tray-padding = 2
 ;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+
+[bar/integrated_3]
+monitor = ${env:MONITOR:DP-2}
+width = 100%
+height = 25
+;offset-x = 0%
+;offset-y = 1
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = JetBrains Mono NL:size=12
+font-1 = FontAwesome:size=8:antialias=false;0
+
+modules-left = i3
+modules-center = date
+modules-right = battery cpu temperature wlan eth pulseaudio
+
+;tray-position = right
+;tray-padding = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+
+[bar/integrated_2]
+monitor = ${env:MONITOR:eDP-1}
+width = 100%
+height = 25
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = JetBrains Mono NL:size=12
+font-1 = FontAwesome:size=8:antialias=false;0
+
+modules-left = i3
+modules-center = date
+modules-right = battery cpu temperature wlan eth pulseaudio
+
+tray-position = right
+tray-padding = 2
+
+cusor-click = pointer
 cursor-scroll = ns-resize
 
 [module/xwindow]
@@ -135,7 +211,7 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = 0
 label-mode-foreground = #000
@@ -220,10 +296,10 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = net1
+interface = wlp108s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected>
 format-connected-underline = ${colors.secondary}
 label-connected = %essid%
 
@@ -242,13 +318,13 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = enp0s3
+interface = enp55s0u2u3
 interval = 3.0
 
 format-connected-underline = ${colors.secondary}
 format-connected-prefix = ""
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+label-connected = %{A1:nmcli -g ip4.address d show enp55s0u2u3 | cut -f 1 -d '/' | tr -d "\n" | xclip -selection clipboard:}%local_ip%%{A}
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -332,8 +408,8 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT0
-adapter = ADP1
+battery = BAT1
+;adapter = ADP1
 full-at = 98
 
 label-full = %percentage%%
@@ -376,10 +452,10 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format = <label>
+format-underline = ${colors.secondary}
+format-warn = <label-warn>
+format-warn-underline = ${colors.alert}
 
 label = %temperature-c%
 label-warn = %temperature-c%

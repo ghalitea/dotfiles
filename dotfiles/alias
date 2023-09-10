@@ -1,1 +1,3 @@
-alias dotdrop="dotdrop --cfg=/home/sfischer/dotfiles/config.yaml"
+alias dotdrop="dotdrop --cfg=$HOME/dotfiles/config.yaml"
+alias ll="ls -lh"
+alias la="ls -lah"
