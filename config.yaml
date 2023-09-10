@@ -24,6 +24,10 @@ dotfiles:
   f_alias:
     src: alias
     dst: ~/.alias
+  d_config_i3_scripts:
+    src: config/i3/scripts
+    dst: ~/.config/i3/scripts
+    chmod: '775'
 profiles:
   laptop:
     dotfiles:
@@ -33,3 +37,7 @@ profiles:
     - f_config_picom.conf
     - f_bashrc
     - f_alias
+    - d_config_i3_scripts
+  desktop:
+    dotfiles:
+    - d_config_i3_scripts
