@@ -44,6 +44,7 @@ This is all the basic software used in this SetUp:
 
 All of these can be installed using the following commands:\
 `sudo dnf install i3 polybar kitty rofi sddm flatpak git pip xrandr xinput picom xautolock jetbrains-mono-fonts qt5-qtquickcontrols2 qt5-qtquickcontrols qt5-qtgraphicaleffects`\
+`flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`\
 `pip install dotdrop`
 
 Some software you also might wanna have in the beginning is the following:
@@ -163,7 +164,7 @@ Here is a full list of all the applications installed on one or multiple of my s
 | -----------             | ----------- |
 | Minecraft               | videogame |
 | krita                   | drawing software |
-| Xournalpp               | software used for taking notes |
+| Xournalpp               | software used for taking notes |`flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`\
 | Signal                  | messaging software |
 | Discord                 | voice chat |
 | Spotify                 | music player |
@@ -174,6 +175,7 @@ Here is a full list of all the applications installed on one or multiple of my s
 
 ## TlDr
 `sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm`\
+`flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`\
 `sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo`\
 `sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc`\
 `sudo dnf install i3 polybar kitty rofi sddm flatpak git pip xrandr xinput picom xautolock jetbrains-mono-fonts qt5-qtquickcontrols2 qt5-qtquickcontrols qt5-qtgraphicaleffects neovim telegram-desktop brave-browser`\
