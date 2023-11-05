@@ -75,7 +75,9 @@ Thsi is done using dotdrop:\
 `dotdrop -cfg ~/dotfiles/config.yaml -p >>profile name<< install`
 
 It might also be usefull to give the just installed scriplets some rights.\
-`chmod +x ~/.config/rofi/bin/launcher_colorful`
+`chmod +x ~/.config/rofi/bin/launcher_colorful`\
+`chmod +x ~/.config/i3/scripts/lock.sh`\
+`chmod +x ~/.config/i3/scripts/startAutoLocker`
 
 Press 'Mod Shift R' to reload the i3 config.
 
